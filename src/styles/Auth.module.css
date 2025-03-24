@@ -1,0 +1,123 @@
+.signContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+    width: 40%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 30px;
+    margin: 50px auto;
+    height: 500px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.subText {
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.inputGroup label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.inputGroup input {
+    padding: 10px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.forgotPassword {
+    text-align: right;
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.forgotPassword:hover {
+    text-decoration: underline;
+}
+
+.signInButton {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.signInButton:hover {
+    background-color: #333;
+}
+
+.orText {
+    margin: 15px 0;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.socialIcons img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.signUpText {
+    font-size: 14px;
+}
+
+.signUpText a {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signUpText a:hover {
+    text-decoration: underline;
+}
+
+/* Auth page */
+.authContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.divider {
+    width: 2px;
+    height: 70%;
+    background-color: #d1d1d1;
+}
