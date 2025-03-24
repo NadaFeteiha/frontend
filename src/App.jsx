@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/HomePage'
 import Profile from './pages/ProfilePage'
 import AuthPage from './pages/AuthPage'
+import ChatBot from './pages/ChatbotPage'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile/" element={<Profile />} />
         <Route path='/auth/' element={<AuthPage />} />
+        <Route path="/chatbot/" element={<ChatBot />} />
       </Routes>
     </div>
   )
