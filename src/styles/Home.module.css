@@ -80,3 +80,38 @@
     background-color: white;
     border-radius: 50%;
 }
+
+/************* Roadmap component  ****************/
+.roadmapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.roadmapItemsContainer {
+    display: flex;
+    flex-direction: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.roadmapItemContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.roadmapItemContainer:hover {
+    background-color: #e9e9e9;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
