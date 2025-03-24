@@ -14,7 +14,9 @@ function AuthPage() {
     return (
         <div className={styles.authContainer}>
             <SignIn />
-            <div className={styles.divider}></div>
+            <div className={styles.dividerContainer}>
+                <div className={styles.divider}></div>
+            </div>
             <SignUp />
         </div>
     );

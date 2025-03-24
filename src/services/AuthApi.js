@@ -1,41 +1,39 @@
-
 import axios from 'axios';
 
-const BaseURL = 'http://localhost:4000/api/auth';
-
-axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.BaseURL = BaseURL;
-// add interceptors
 
-axios.interceptors.request.use(
-    (config) => {
-        // Do something before request is sent
-        return config;
-    },
-    (error) => {
-        // Do something with request error
-        return Promise.reject(error);
-    }
-);
-
-
-
-//TODO: forgot password, reset password, register
+//TODO: forgot password, reset password
 
 const login = async (email, password) => {
-    const response = await axios.post(`${BaseURL}/login`, {
-        email: email,
-        password: password
+    const response = await axios.post('/api/auth/login', {
+        email: email, password: password
     });
+
+    if (response.data.status == false) {
+        console.log(response.data);
+        throw new Error(response.message);
+    }
+
+    console.log(response.data);
     return response.data;
 };
 
+const register = async (userName, Name, email, password) => {
+    const response = await axios.post('/api/auth/register',
+        { email: email, userName: userName, name: Name, password: password });
 
+    if (response.data.status == false) {
+        console.log(response.data);
+        throw new Error(response.message);
+    }
+
+    console.log(response.data);
+    return response.data;
+}
 
 const AuthAPI = {
     login,
-
+    register
 };
 
 export default AuthAPI;
