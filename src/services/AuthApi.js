@@ -9,9 +9,9 @@ const login = async (email, password) => {
         email: email, password: password
     });
 
-    if (response.data.status == false) {
+    if (response.data.status === false) {
         console.log(response.data);
-        throw new Error(response.message);
+        throw new Error(response.data.message);
     }
 
     console.log(response.data);

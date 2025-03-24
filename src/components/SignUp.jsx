@@ -5,7 +5,7 @@ import AuthApi from "../services/AuthApi";
 
 //TODO: cheeck if usename is already taken
 
-const SignUp = () => {
+const SignUp = ({ focusOn, setFocusOn }) => {
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");
     const [name, setName] = useState("");
@@ -51,6 +51,7 @@ const SignUp = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
+                        {...(focusOn === "signup" && { autoFocus: true })}
                     />
                 </div>
 
@@ -101,13 +102,15 @@ const SignUp = () => {
                 {error && <p className={styles.error}>{error}</p>}
                 {password !== confirmPassword && <p className={styles.error}>Passwords do not match</p>}
 
-                <button type="submit" className={styles.signInButton} disabled={loading}>
-                    {loading ? "Signing Up..." : "Sign Up"}
-                </button>
+                <div className={styles.btnContainer}>
+                    <button type="submit" className={styles.signInButton} disabled={loading}>
+                        {loading ? "Signing Up..." : "Sign Up"}
+                    </button>
+                </div>
             </form>
 
-            <p className={styles.signUpText}>
-                Already have an account? <a href="/signin">Sign In</a>
+            <p className={styles.optionText}>
+                Already have an account? <a href="" onClick={() => setFocusOn("signin")}>Sign In</a>
             </p>
         </div>
     );

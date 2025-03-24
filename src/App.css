@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+    --primary-color: #0bd05b;
+    --secondary-color: #333;
+    --danger-color: #ff0000;
+    --success-color: #00ff00;
+    --warning-color: #ffcc00;
+    --main-bg-color: #061621;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--main-bg-color);
+    color: #0d713c;
+}
+
+h1 {
+    @apply text-xl font-bold mb-2;
+}

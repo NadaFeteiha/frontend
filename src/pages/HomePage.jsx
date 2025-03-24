@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import RoadmapApi from '../services/RoadmapAPI.js';
+import TrendingFields from '../components/TrendingFields.jsx';
 
 function HomePage() {
 
@@ -16,7 +17,7 @@ function HomePage() {
 
     return (
         <main>
-            <h2>Home Page</h2>
+            <TrendingFields />
         </main>
     );
 }
