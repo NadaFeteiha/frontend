@@ -86,7 +86,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f8f9fa;
     padding: 20px;
 }
 
@@ -111,7 +110,19 @@
     transition: all 0.3s ease;
 }
 
-.roadmapItemContainer:hover {
-    background-color: #e9e9e9;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+
+
+/*********** Image component ***************/
+/* make the imge full width */
+.quoteImageContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.quoteImageContainer img {
+    width: 500%;
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

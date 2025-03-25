@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import RoadmapApi from '../services/RoadmapAPI.js';
 import TrendingFields from '../components/TrendingFields.jsx';
 import Roadmap from '../components/Roadmap.jsx';
+import { getQuoteImgs as QuoteImg } from '../services/quotes.js';
+import QuoteImage from '../components/ImageQuote.jsx';
+import Footer from '../components/Footer.jsx';
 
 function HomePage() {
     const navigate = useNavigate();
     const [roadmaps, setRoadmaps] = useState([]);
+    const [imgs, setImgs] = useState([]);
 
     useEffect(() => {
         RoadmapApi.getAllRoadmap()
@@ -20,6 +24,14 @@ function HomePage() {
 
     }, []);
 
+    // call the QuoteImg function to get a random quote image
+    useEffect(() => {
+        QuoteImg().then(response => {
+            setImgs(response);
+        }).catch(error => {
+            console.log(error);
+        });
+    }, []);
 
     return (
         <main>
@@ -29,6 +41,8 @@ function HomePage() {
                 allRoadmapClick={() => navigate('/roadmap')}
                 roadmapClick={(roadmapId) => navigate(`/roadmap/${roadmapId}`)}
             />
+            <QuoteImage imgs={imgs} />
+            <Footer />
         </main>
     );
 }

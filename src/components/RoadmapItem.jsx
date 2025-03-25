@@ -1,12 +1,11 @@
 import styles from '../styles/Home.module.css';
 
-function RoadmapItem({ title, description, status, roadmapClick }) {
+function RoadmapItem({ roadmap, roadmapClick }) {
 
     return (
         <div className={styles.roadmapItemContainer}>
-            <h3>{title}</h3>
-            <p> {description}</p>
-            <p>Status: {status}</p>
+            <h3>{roadmap.title}</h3>
+            <p>{roadmap.description}</p>
             <button
                 className={styles.chatButton}
                 onClick={roadmapClick}

@@ -8,16 +8,16 @@ function Roadmap({ roadmaps, allRoadmapClick, roadmapClick }) {
             <h1>Roadmap</h1>
             <button
                 className={styles.chatButton}
-                onClick={allRoadmapClick}
-            />
+                onClick={allRoadmapClick}>
+                view all
+            </button>
+
             <div className={styles.roadmapItemsContainer} >
                 {
                     roadmaps.map((roadmap) => (
                         <RoadmapItem
                             key={roadmap.id}
-                            title={roadmap.title}
-                            description={roadmap.description}
-                            status={roadmap.status}
+                            roadmap={roadmap}
                             roadmapClick={() => roadmapClick(roadmap.id)}
                         />
                     ))
