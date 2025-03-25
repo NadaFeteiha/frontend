@@ -1,19 +1,24 @@
 import styles from '../styles/Home.module.css';
 import RoadmapItem from './RoadmapItem';
 
-function Roadmap({ roadmaps }) {
+function Roadmap({ roadmaps, allRoadmapClick, roadmapClick }) {
 
     return (
         <div className={styles.roadmapContainer}>
             <h1>Roadmap</h1>
-            <div className={styles.roadmapItemsContainer}>
+            <button
+                className={styles.chatButton}
+                onClick={allRoadmapClick}
+            />
+            <div className={styles.roadmapItemsContainer} >
                 {
-                    roadmaps.map((roadmap, index) => (
+                    roadmaps.map((roadmap) => (
                         <RoadmapItem
-                            key={index}
+                            key={roadmap.id}
                             title={roadmap.title}
                             description={roadmap.description}
                             status={roadmap.status}
+                            roadmapClick={() => roadmapClick(roadmap.id)}
                         />
                     ))
                 }

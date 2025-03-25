@@ -5,6 +5,7 @@ import Home from './pages/HomePage'
 import Profile from './pages/ProfilePage'
 import AuthPage from './pages/AuthPage'
 import ChatBot from './pages/ChatbotPage'
+import Roadmap from './pages/RoadmapPage'
 
 function App() {
 
@@ -17,6 +18,9 @@ function App() {
         <Route path="/profile/" element={<Profile />} />
         <Route path='/auth/' element={<AuthPage />} />
         <Route path="/chatbot/" element={<ChatBot />} />
+        <Route path="/roadmap/" element={<Roadmap />} />
+        <Route path='/roadmap/:roadmapId' element={<Roadmap />} />
+
       </Routes>
     </div>
   )

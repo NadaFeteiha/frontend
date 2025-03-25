@@ -1,7 +1,7 @@
 
 const RoadmapBaseURL = 'http://localhost:4000/api/';
 
-const getRoadmaps = async () => {
+const getAllRoadmap = async () => {
     const response = await fetch(`${RoadmapBaseURL}roadmap`);
     if (!response.ok) {
         throw new Error('Failed to get roadmaps');
@@ -11,14 +11,11 @@ const getRoadmaps = async () => {
     return result.data;
 };
 
-const addRoadmap = async (roadmap) => {
-    const response = await fetch(`${RoadmapBaseURL}roadmap`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(roadmap)
-    });
+
+const getRoadmap = async (roadmapId) => {
+    const response = await fetch(`${RoadmapBaseURL}roadmap/${roadmapId}`);
     if (!response.ok) {
-        throw new Error('Failed to add roadmap');
+        throw new Error('Failed to get roadmap');
     }
 
     const result = await response.json();
@@ -26,8 +23,8 @@ const addRoadmap = async (roadmap) => {
 };
 
 const RoadmapApi = {
-    getRoadmaps,
-    addRoadmap
+    getAllRoadmap,
+    getRoadmap
 };
 
 export default RoadmapApi;

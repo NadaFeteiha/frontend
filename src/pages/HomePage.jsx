@@ -5,11 +5,11 @@ import TrendingFields from '../components/TrendingFields.jsx';
 import Roadmap from '../components/Roadmap.jsx';
 
 function HomePage() {
-
+    const navigate = useNavigate();
     const [roadmaps, setRoadmaps] = useState([]);
 
     useEffect(() => {
-        RoadmapApi.getRoadmaps()
+        RoadmapApi.getAllRoadmap()
             .then(response => {
                 console.log(response);
                 setRoadmaps(response);
@@ -20,17 +20,15 @@ function HomePage() {
 
     }, []);
 
-    const navigate = useNavigate();
-
-    const handleChatButtonClick = () => {
-        console.log('Chat button clicked');
-        navigate('/chatbot');
-    };
 
     return (
         <main>
-            <TrendingFields handleChatButtonClick={handleChatButtonClick} />
-            <Roadmap roadmaps={roadmaps} />
+            <TrendingFields chatBotClick={() => navigate('/chatbot')} />
+            <Roadmap
+                roadmaps={roadmaps}
+                allRoadmapClick={() => navigate('/roadmap')}
+                roadmapClick={(roadmapId) => navigate(`/roadmap/${roadmapId}`)}
+            />
         </main>
     );
 }

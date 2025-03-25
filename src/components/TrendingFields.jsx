@@ -1,13 +1,13 @@
 import styles from '../styles/Home.module.css';
 
-function TrendingFields({ handleChatButtonClick }) {
+function TrendingFields({ chatBotClick }) {
 
     return (
         <div className={styles.container}>
             <p className={styles.subtitle}>the most common fields and languages to learn this year...</p>
             <button
                 className={styles.chatButton}
-                onClick={handleChatButtonClick}
+                onClick={chatBotClick}
             >
                 Chat with AI
             </button>
