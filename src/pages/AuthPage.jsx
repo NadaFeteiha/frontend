@@ -2,7 +2,7 @@ import AuthAPI from "../services/AuthApi";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
 import styles from "../styles/Auth.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //TODO: Check if user is logged in or not by token
 //TODO: If user is logged in, redirect to Profile Page
@@ -11,15 +11,24 @@ import { useState } from "react";
 
 function AuthPage() {
 
-    const [focusOn, setFocusOn] = useState("");
+    const [userId, setUserId] = useState("");
+
+    useEffect(() => {
+        if (userId) {
+            localStorage.setItem("userID", userId);
+        }
+    }, [userId]);
 
     return (
         <div className={styles.authContainer}>
-            <SignIn focusOn={focusOn} setFocusOn={setFocusOn} />
+
+            <SignIn setUserId={setUserId} />
+
             <div className={styles.dividerContainer}>
                 <div className={styles.divider}></div>
             </div>
-            <SignUp focusOn={focusOn} setFocusOn={setFocusOn} />
+
+            <SignUp setUserId={setUserId} />
         </div>
     );
 };

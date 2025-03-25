@@ -5,7 +5,7 @@ import AuthApi from "../services/AuthApi";
 
 //TODO: cheeck if usename is already taken
 
-const SignUp = ({ focusOn, setFocusOn }) => {
+const SignUp = () => {
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");
     const [name, setName] = useState("");
@@ -51,7 +51,6 @@ const SignUp = ({ focusOn, setFocusOn }) => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        {...(focusOn === "signup" && { autoFocus: true })}
                     />
                 </div>
 
@@ -108,10 +107,6 @@ const SignUp = ({ focusOn, setFocusOn }) => {
                     </button>
                 </div>
             </form>
-
-            <p className={styles.optionText}>
-                Already have an account? <a href="" onClick={() => setFocusOn("signin")}>Sign In</a>
-            </p>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import styles from "../styles/Auth.module.css";
 import { useState } from "react";
 import AuthApi from "../services/AuthApi";
 
-const SignIn = ({ focusOn, setFocusOn }) => {
+const SignIn = ({ setUserId }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -19,6 +19,7 @@ const SignIn = ({ focusOn, setFocusOn }) => {
             console.log(" heere");
             console.log(response);
             if (response.status == true) {
+                setUserId(response.data.id);
                 window.location.href = "/";
             }
         } catch (error) {
@@ -43,9 +44,6 @@ const SignIn = ({ focusOn, setFocusOn }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        {
-                        ...(focusOn === "signin" && { autoFocus: true })
-                        }
                     />
                 </div>
 
@@ -71,10 +69,6 @@ const SignIn = ({ focusOn, setFocusOn }) => {
                     </button>
                 </div>
             </form >
-
-            <p className={styles.optionText}>
-                Don’t have an account? <a href="" onClick={setFocusOn("signup")}>Sign Up</a>
-            </p>
         </div >
     );
 };
