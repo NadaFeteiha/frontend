@@ -1,30 +1,46 @@
 
-const RoadmapBaseURL = 'http://localhost:4000/api/';
+import axios from 'axios';
+
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const getAllRoadmap = async () => {
-    const response = await fetch(`${RoadmapBaseURL}roadmap`);
-    if (!response.ok) {
-        throw new Error('Failed to get roadmaps');
-    }
+    const response = await axios.get(`/api/roadmap`);
 
-    const result = await response.json();
-    return result.data;
+    if (response.data.status === false) {
+        console.log(response.data);
+        throw new Error(response.data.message);
+    }
+    return response.data.data;
 };
 
 
 const getRoadmap = async (roadmapId) => {
-    const response = await fetch(`${RoadmapBaseURL}roadmap/${roadmapId}`);
-    if (!response.ok) {
-        throw new Error('Failed to get roadmap');
+    const response = await axios.get(`/api/roadmap/${roadmapId}`);
+
+    if (response.data.status === false) {
+        console.log(response.data);
+        throw new Error(response.data.message);
     }
 
-    const result = await response.json();
-    return result.data;
+    return response.data.data;
 };
+
+
+const mostPopularTopics = async () => {
+    const response = await axios.get(`/api/topic/popular`);
+
+    if (response.data.status === false) {
+        console.log(response.data);
+        throw new Error(response.data.message);
+    }
+
+    return response.data.data;
+}
 
 const RoadmapApi = {
     getAllRoadmap,
-    getRoadmap
+    getRoadmap,
+    mostPopularTopics
 };
 
 export default RoadmapApi;

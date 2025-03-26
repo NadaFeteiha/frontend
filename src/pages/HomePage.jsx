@@ -10,6 +10,7 @@ import Footer from '../components/Footer.jsx';
 function HomePage() {
     const navigate = useNavigate();
     const [roadmaps, setRoadmaps] = useState([]);
+    const [trendTopics, setTrendTopics] = useState([]);
     const [imgs, setImgs] = useState([]);
 
     useEffect(() => {
@@ -22,6 +23,16 @@ function HomePage() {
                 console.log(error);
             });
 
+        //get triend topics 
+        RoadmapApi.mostPopularTopics()
+            .then(response => {
+                console.log("popular topics");
+                console.log(response);
+                setTrendTopics(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }, []);
 
     // call the QuoteImg function to get a random quote image
@@ -35,7 +46,7 @@ function HomePage() {
 
     return (
         <main>
-            <TrendingFields chatBotClick={() => navigate('/chatbot')} />
+            <TrendingFields chatBotClick={() => navigate('/chatbot')} trendTopics={trendTopics} />
             <Roadmap
                 roadmaps={roadmaps}
                 allRoadmapClick={() => navigate('/roadmap')}

@@ -14,43 +14,101 @@ export default function ProfileCard({ user, handleEditProfile }) {
         window.location.href = "/auth";
     }
 
-    return (
-        <div className={styles.profileContainer}>
-            <h2 >Profile Page</h2>
-            <div className={styles.profileSection}>
-                <img className={styles.profilePicture}
-                    src={user.profilePicture || "https://via.placeholder.com/100"}
-                    alt={user.name}
-                />
-                <div className={styles.profileDetails}>
-                    <p className={styles.profileInfo}><strong>Name:</strong> {user.name}</p>
-                    <p className={styles.profileInfo}><strong>Username:</strong> {user.userName}</p>
-                    <p className={styles.profileInfo}><strong>Email:</strong> {user.email}</p>
-                    <p className={styles.profileInfo}><strong>Role:</strong> {user.role}</p>
-                </div>
-            </div>
-            {/* Display Progress */}
-            {user.progress.length > 0 && (
-                <div className={styles.progressSection}>
-                    <h3 className={styles.progressTitle}>Progress</h3>
-                    {user.progress.map((p) => (
-                        <div key={p._id} className={styles.progressCard}>
-                            <p><strong>Roadmap:</strong> {p.roadmap.title}</p>
-                            <p><strong>Current Step:</strong> {p.currentStep}</p>
-                            <p><strong>Started At:</strong> {new Date(p.startedAt).toLocaleDateString()}</p>
-                            <p><strong>Last Active:</strong> {new Date(p.lastActive).toLocaleDateString()}</p>
-                            <p><strong>Completed Steps:</strong> {p.completedSteps.length}</p>
-                            <p><strong>Completed Topics:</strong> {p.completedTopics.length}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
+    const calculateCompletion = (roadmap) => {
+        return Math.round((roadmap.completedCount / roadmap.totalSteps) * 100);
+    }
 
-            <div className={styles.logoutSection}>
-                <button className={styles.logoutButton} onClick={handleEditProfile}>Edit profile</button>
-                <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
-                <button className={styles.deleteButton} onClick={handleDeleteAccount}>Delete Account</button>
+    return (
+        <div className={styles.mainContainer}>
+            <div className={styles.profileContainer}>
+                <h2 className={styles.stepsTitle}>Profile</h2>
+
+                <div className={styles.profileSection}>
+                    <div className={styles.avatarContainer}>
+                        <img
+                            className={styles.profilePicture}
+                            src={user.profilePicture || "https://via.placeholder.com/150"}
+                            alt={user.name}
+                        />
+                    </div>
+                    <div className={styles.profileDetails}>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Name:</span>
+                            <span className={styles.detailValue}>{user.name}</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Username:</span>
+                            <span className={styles.detailValue}>@{user.userName}</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Email:</span>
+                            <span className={styles.detailValue}>{user.email}</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Role:</span>
+                            <span className={styles.role}>{user.role}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {user.roadmaps && user.roadmaps.length > 0 && (
+                    <div className={styles.progressContainer}>
+                        <h2 className={styles.stepsTitle}>My Roadmaps</h2>
+                        <ol className={styles.stepsList}>
+                            {user.roadmaps.map((roadmap) => (
+                                <li key={roadmap.id} className={styles.stepItem}>
+                                    <div className={styles.stepHeader}>
+                                        <span className={styles.stepNumber}>Roadmap</span>
+                                        <h3 className={styles.stepTitle}>{roadmap.title}</h3>
+                                    </div>
+                                    <div className={styles.topicInfo}>
+                                        <div className={styles.infoRow}>
+                                            <span className={styles.topicLabel}>Description:</span>
+                                            <span className={styles.topicTitle}>{roadmap.description}</span>
+                                        </div>
+                                        <div className={styles.infoRow}>
+                                            <span className={styles.topicLabel}>Current Step:</span>
+                                            <span className={styles.topicTitle}>
+                                                {roadmap.currentStep.order}. {roadmap.currentStep.title}
+                                            </span>
+                                        </div>
+                                        <div className={styles.infoRow}>
+                                            <span className={styles.topicLabel}>Progress:</span>
+                                            <span className={styles.topicDescription}>
+                                                {calculateCompletion(roadmap)}% ({roadmap.completedCount}/{roadmap.totalSteps} steps)
+                                            </span>
+                                        </div>
+                                        <div className={styles.infoRow}>
+                                            <span className={styles.topicLabel}>Started:</span>
+                                            <span className={styles.topicType}>
+                                                {new Date(roadmap.startedAt).toLocaleDateString()}
+                                            </span>
+                                        </div>
+                                        <div className={styles.infoRow}>
+                                            <span className={styles.topicLabel}>Last Active:</span>
+                                            <span className={styles.topicType}>
+                                                {new Date(roadmap.lastActive).toLocaleDateString()}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                )}
+
+                <div className={styles.actionButtons}>
+                    <button className={styles.editButton} onClick={handleEditProfile}>
+                        Edit Profile
+                    </button>
+                    <button className={styles.logoutButton} onClick={handleLogout}>
+                        Logout
+                    </button>
+                    <button className={styles.deleteButton} onClick={handleDeleteAccount}>
+                        Delete Account
+                    </button>
+                </div>
             </div>
         </div>
-    )
+    );
 }

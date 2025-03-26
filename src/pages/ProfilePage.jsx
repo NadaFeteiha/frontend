@@ -44,7 +44,16 @@ function ProfilePage() {
 
         AuthAPI.updateProfile(user.id, updatedUser)
             .then((res) => {
-                setUser(res.data);
+                // just reset the user  details not roadmaps
+                const newUser = {
+                    name: res.data.name,
+                    email: res.data.email,
+                    userName: res.data.userName,
+                    role: res.data.role,
+                    profilePicture: res.data.profilePicture,
+                    ...user,
+                }
+                setUser(newUser);
                 setIsEditing(false);
             })
             .catch((err) => {
