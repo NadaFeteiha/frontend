@@ -91,7 +91,7 @@
     background: #c9302c;
 }
 
-.logoutSection{
+.logoutSection {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -107,4 +107,78 @@
     text-align: center;
     font-size: 18px;
     color: #d9534f;
+}
+
+
+/*********** Edit Profile  **********/
+.editContainer {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.profileImgSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profilePreview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.inputGroup {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.inputGroup label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.inputGroup input,
+.profileImgSection input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.saveButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.saveButton:hover {
+    background: #0056b3;
+}
+
+.buttonGroup{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
