@@ -7,7 +7,7 @@ import { getQuoteImgs as QuoteImg } from '../services/quotes.js';
 import QuoteImage from '../components/ImageQuote.jsx';
 import Footer from '../components/Footer.jsx';
 
-function HomePage() {
+function HomePage({ setIsChatbotOpen }) {
     const navigate = useNavigate();
     const [roadmaps, setRoadmaps] = useState([]);
     const [trendTopics, setTrendTopics] = useState([]);
@@ -46,7 +46,11 @@ function HomePage() {
 
     return (
         <main>
-            <TrendingFields chatBotClick={() => navigate('/chatbot')} trendTopics={trendTopics} />
+            <TrendingFields chatBotClick={() => {
+                setIsChatbotOpen(true);
+                navigate('/chatbot')
+            }
+            } trendTopics={trendTopics} />
             <Roadmap
                 roadmaps={roadmaps}
                 allRoadmapClick={() => navigate('/roadmap')}

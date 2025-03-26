@@ -7,15 +7,20 @@ import AuthPage from './pages/AuthPage'
 import ChatBot from './pages/ChatbotPage'
 import Roadmap from './pages/RoadmapPage'
 import RoadmapDetails from './pages/RoadmapDetailsPage'
+import { useState } from 'react'
 
 function App() {
 
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false)
+
   return (
     <div>
-      <Navbar />
+      {
+        !isChatbotOpen && <Navbar />
+      }
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setIsChatbotOpen={setIsChatbotOpen} />} />
         <Route path="/profile/" element={<Profile />} />
         <Route path='/auth/' element={<AuthPage />} />
         <Route path="/chatbot/" element={<ChatBot />} />

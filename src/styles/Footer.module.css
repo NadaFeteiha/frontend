@@ -1,0 +1,11 @@
+.container {
+    background-color: #223a4d;
+    color: #95a9b3;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+hr {
+    width: 100%;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+}

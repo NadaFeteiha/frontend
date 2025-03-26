@@ -108,35 +108,99 @@
 }
 
 /************* Roadmap component  ****************/
+.mainContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
 .roadmapContainer {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-.roadmapItemsContainer {
+.header {
     display: flex;
-    flex-direction: flex-start;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
-.roadmapItemContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.stepsTitle {
+    font-size: 2rem;
+    color: #b6c0c5;
+    margin: 0;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.stepsTitle:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    border-radius: 2px;
+}
+
+.viewAllButton {
+    width: 120px;
+    padding: 0.6rem 1.2rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
+.viewAllButton:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
 
+/* Roadmap List Styles */
+.roadmapContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.roadmapListContainer {
+    display: flex;
+    flex-direction: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.roadmapItem {
+    background: #dfe5e8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.roadmapTitle {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.roadmapDescription {
+    color: #555;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.5;
+}
 
 /*********** Image component ***************/
 /* make the imge full width */
@@ -151,4 +215,25 @@
     height: 300px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.moreRoadmap {
+    background: #3d687d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.more {
+    color: #f3fbff;
+    font-size: 1.3rem;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    font-style: italic;
 }
