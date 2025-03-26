@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-    --primary-color: #0bd05b;
+    --primary-color: #4885ad;
     --secondary-color: #333;
     --danger-color: #ff0000;
-    --success-color: #00ff00;
+    --success-color: #4885ad;
     --warning-color: #ffcc00;
     --main-bg-color: #061621;
 }
@@ -19,7 +19,7 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background-color: var(--main-bg-color);
-    color: #0d713c;
+    color: #4885ad;
 }
 
 h1 {
