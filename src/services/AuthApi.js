@@ -29,11 +29,32 @@ const register = async (userName, Name, email, password) => {
 
     console.log(response.data);
     return response.data;
+};
+
+const myProfile = async (userId) => {
+    const response = await axios.get(`/api/user/profile/${userId}`);
+
+    if (response.data.status === false) {
+        console.log(response.data);
+        throw new Error(response.data.message);
+    }
+    return response.data;
+};
+
+const deleteAccount = async (userId) => {
+    const response = await axios.delete(`/api/user/${userId}`);
+    if (response.data.status === false) {
+        console.log(response.data);
+        throw new Error(response.data.message);
+    }
+    return response.data;
 }
 
 const AuthAPI = {
     login,
-    register
+    register,
+    myProfile,
+    deleteAccount
 };
 
 export default AuthAPI;

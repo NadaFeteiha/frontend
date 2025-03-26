@@ -1,0 +1,110 @@
+.profileContainer {
+    padding: 20px;
+    text-align: center;
+}
+
+.h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.profilePicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.profileInfo {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.profileSection {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.profileDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.progressSection {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.progressTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.progressCard {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.logoutButton {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #207180;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.logoutButton:hover {
+    background: #676464;
+}
+
+.deleteButton {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #d9534f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.deleteButton:hover {
+    background: #c9302c;
+}
+
+.logoutSection{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.loading {
+    text-align: center;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.error {
+    text-align: center;
+    font-size: 18px;
+    color: #d9534f;
+}

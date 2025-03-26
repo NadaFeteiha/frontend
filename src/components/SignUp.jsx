@@ -5,7 +5,7 @@ import AuthApi from "../services/AuthApi";
 
 //TODO: cheeck if usename is already taken
 
-const SignUp = () => {
+const SignUp = ({ setUserId }) => {
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");
     const [name, setName] = useState("");
@@ -26,6 +26,7 @@ const SignUp = () => {
             // if success, redirect to home page
             console.log(response);
             if (response.status == true) {
+                setUserId(response.data.id);
                 window.location.href = "/";
             }
         }
