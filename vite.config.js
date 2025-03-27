@@ -11,7 +11,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:4000",
+        // target: "http://localhost:4000",
+        target: "https://backend-moys.onrender.com/",
         changeOrigin: true,
       },
     },
