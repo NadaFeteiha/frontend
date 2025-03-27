@@ -12,7 +12,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         // target: "http://localhost:4000",
-        target: "https://backend-moys.onrender.com/",
+        target: "http://backend-moys.onrender.com",
         changeOrigin: true,
       },
     },
