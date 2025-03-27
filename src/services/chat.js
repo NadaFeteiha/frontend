@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL = API_URL;
+
 // Create a new chat
 export async function createChat(messages, title) {
     const res = await axios.post("/api/chat", { messages, title });
