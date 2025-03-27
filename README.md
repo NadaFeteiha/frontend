@@ -25,33 +25,30 @@ This project is a web-based platform designed to help users achieve their learni
 ### Steps
 
 1. Clone the repository:
+
    ```bash
-    git clone <repo-url>
-    cd Capstone
-    cd frontend
+   git clone <repo-url>
+   cd Capstone
+   cd frontend
    ```
 
-```
+2. Install dependencies:
 
-2. Install dependencies
-```
+   ```bash
+   npm i
+   ```
 
-    npm i
-
-```
 3. Set up environment variables:
-```
 
-    VITE_UNSPLASH_API_KEY=<your-unsplash-api-key>
-    VITE_GROQ_API_KEY=<your-groq-api-key>
+   ```
+   VITE_UNSPLASH_API_KEY=<your-unsplash-api-key>
+   VITE_GROQ_API_KEY=<your-groq-api-key>
+   ```
 
-```
 4. Start the frontend development server:
-```
-
-    npm run dev
-
-```
+   ```bash
+   npm run dev
+   ```
 
 ## Folder Structure
 
@@ -59,5 +56,3 @@ This project is a web-based platform designed to help users achieve their learni
 - **src/pages**: Page-level components for routing.
 - **src/services**: API service files for interacting with the backend.
 - **src/styles**: CSS modules for styling.
-
-```
