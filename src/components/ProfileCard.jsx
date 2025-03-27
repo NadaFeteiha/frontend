@@ -15,7 +15,11 @@ export default function ProfileCard({ user, handleEditProfile }) {
     }
 
     const calculateCompletion = (roadmap) => {
-        return Math.round((roadmap.completedCount / roadmap.totalSteps) * 100);
+        if (roadmap.totalSteps === 0) {
+            return 0;
+        } else {
+            return Math.round((roadmap.completedCount / roadmap.totalSteps) * 100);
+        }
     }
 
     return (
@@ -66,12 +70,14 @@ export default function ProfileCard({ user, handleEditProfile }) {
                                             <span className={styles.topicLabel}>Description:</span>
                                             <span className={styles.topicTitle}>{roadmap.description}</span>
                                         </div>
-                                        <div className={styles.infoRow}>
-                                            <span className={styles.topicLabel}>Current Step:</span>
-                                            <span className={styles.topicTitle}>
-                                                {roadmap.currentStep.order}. {roadmap.currentStep.title}
-                                            </span>
-                                        </div>
+                                        {roadmap.currentStep && (
+                                            <div className={styles.infoRow}>
+                                                <span className={styles.topicLabel}>Current Step:</span>
+                                                <span className={styles.topicTitle}>
+                                                    {roadmap.currentStep.order}. {roadmap.currentStep.title}
+                                                </span>
+                                            </div>
+                                        )}
                                         <div className={styles.infoRow}>
                                             <span className={styles.topicLabel}>Progress:</span>
                                             <span className={styles.topicDescription}>

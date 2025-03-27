@@ -58,12 +58,23 @@ const isUserInRoadmap = async (roadmapId, userId) => {
     return response.data.data.inRoadmap;
 }
 
+const deleteRoadmapFromUser = async (roadmapId, userId) => {
+    const response = await axios.delete(`/api/user/${userId}/roadmap/${roadmapId}`);
+
+    if (response.data.status === false) {
+        console.log(response.data);
+        throw new Error(response.data.message);
+    }
+    return response.data.data.success;
+}
+
 const RoadmapApi = {
     getAllRoadmap,
     getRoadmap,
     mostPopularTopics,
     setRoadmapToUser,
-    isUserInRoadmap
+    isUserInRoadmap,
+    deleteRoadmapFromUser
 };
 
 export default RoadmapApi;

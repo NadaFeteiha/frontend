@@ -15,7 +15,7 @@ export default function RoadmapDetailsPage() {
     const roadmapId = params.roadmapId;
     const [roadmap, setRoadmap] = useState(null);
     const [steps, setSteps] = useState([]);
-    const [inThisAlready, setInThisAlready] = useState(true);
+    const [inThisAlready, setInThisAlready] = useState(null);
     const [userId, setUserId] = useState(null);
 
     const [loading, setLoading] = useState(false);
@@ -69,6 +69,17 @@ export default function RoadmapDetailsPage() {
             });
     };
 
+    const handleDelete = () => {
+        RoadmapApi.deleteRoadmapFromUser(roadmapId, userId)
+            .then(isSuccess => {
+                console.log("=========== delete roadmap ===========");
+                console.log(isSuccess);
+                setInThisAlready(!isSuccess);
+            }).catch(error => {
+                console.error(error);
+            });
+    };
+
     //handel status
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -82,6 +93,7 @@ export default function RoadmapDetailsPage() {
                     <p >{roadmap.description}</p>
                 </div>
                 {!inThisAlready && <button onClick={handleStart}>Start this roadmap</button>}
+                {inThisAlready && userId && <button className={styles.deleteBtn} onClick={handleDelete}>Delete</button>}
                 {/* TODO progress bar for the user show his progress in case he already in the roadmap. */}
             </div>
 

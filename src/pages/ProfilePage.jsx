@@ -45,14 +45,17 @@ function ProfilePage() {
         AuthAPI.updateProfile(user.id, updatedUser)
             .then((res) => {
                 // just reset the user  details not roadmaps
+                console.log("updated user");
+                console.log(res.data);
                 const newUser = {
+                    ...user,
                     name: res.data.name,
                     email: res.data.email,
                     userName: res.data.userName,
                     role: res.data.role,
                     profilePicture: res.data.profilePicture,
-                    ...user,
                 }
+
                 setUser(newUser);
                 setIsEditing(false);
             })
