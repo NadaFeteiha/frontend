@@ -1,0 +1,212 @@
+.mainContainer {
+    display: flex;
+    background: #061621;
+    color: #b6c0c5;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3498db;
+    margin: 0;
+}
+
+.iconsContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: #b6c0c5;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.newChatIcon:hover {
+    color: #3498db;
+}
+
+.chatsList {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.chatItem {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.chatItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.activeChat {
+    background: rgba(52, 152, 219, 0.2);
+    border-left: 3px solid #3498db;
+}
+
+.chatTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #d9534f;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+
+.deleteButton:hover {
+    color: #c9302c;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.userIcon {
+    font-size: 1.8rem;
+    border: 1px solid #b6c0c5;
+    border-radius: 50%;
+    padding: 0.3rem;
+}
+
+.userName {
+    font-size: 1rem;
+    color: #3498db;
+    margin: 0;
+}
+
+.chatContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.chatHeader {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3498db;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0;
+    text-align: center;
+}
+
+.messagesContainer {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.messageIcon {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.messageContent {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #3498db;
+    flex: 1;
+}
+
+.messageContentRight {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    border-right: 3px solid #3498db;
+    flex: 1;
+}
+
+.inputForm {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: auto;
+}
+
+.promptInput {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.promptInput:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.submitButton {
+    padding: 0 1.5rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.submitButton:hover {
+    background: #2980b9;
+}
+
+.disclaimer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(182, 192, 197, 0.6);
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+}

@@ -1,12 +1,63 @@
-# React + Vite
+# Roadmap Learning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web-based platform designed to help users achieve their learning goals through structured roadmaps. Users can explore various roadmaps, track their progress, and interact with AI-powered chatbots for guidance.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Roadmaps**: Explore curated learning paths with steps and topics to achieve specific goals.
+- **Progress Tracking**: Track your progress through roadmaps and mark steps as completed.
+- **User Profiles**: Manage your profile, including updating your name and profile picture.
+- **AI Chatbot**: Interact with an AI chatbot for personalized learning assistance.
+- **Trending Topics**: Discover the most popular study fields and topics.
+- **Resource Management**: Access resources like articles, videos, and tutorials for each topic.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React**: A JavaScript library for building user interfaces.
+- **Vite**: A fast build tool for modern web projects.
+- **CSS Modules**: Scoped and modular CSS for styling components.
+- **React Router**: For client-side routing.
+- **Axios**: For making HTTP requests to the backend.
+- **React Icons**: For adding icons to the UI.
+
+## Installation
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+    git clone <repo-url>
+    cd Capstone
+    cd frontend
+   ```
+
+```
+
+2. Install dependencies
+```
+
+    npm i
+
+```
+3. Set up environment variables:
+```
+
+    VITE_UNSPLASH_API_KEY=<your-unsplash-api-key>
+    VITE_GROQ_API_KEY=<your-groq-api-key>
+
+```
+4. Start the frontend development server:
+```
+
+    npm run dev
+
+```
+
+## Folder Structure
+
+- **src/components**: Reusable React components.
+- **src/pages**: Page-level components for routing.
+- **src/services**: API service files for interacting with the backend.
+- **src/styles**: CSS modules for styling.
+
+```

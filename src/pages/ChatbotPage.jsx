@@ -12,16 +12,15 @@ import {
     updateChat,
     deleteChat,
 } from "../services/chat";
+import styles from "../styles/ChatBot.module.css";
 
 function ChatBot() {
-    const promptInputRef = useRef(null); // ref for text input
-
+    const promptInputRef = useRef(null);
     const [prompt, setPrompt] = useState("");
     const [messages, setMessages] = useState([]);
     const [chats, setChats] = useState([]);
     const [currentChatId, setCurrentChatId] = useState(null);
 
-    // Fetch all chats on component mount
     useEffect(() => {
         const fetchChats = async () => {
             try {
@@ -34,27 +33,16 @@ function ChatBot() {
         fetchChats();
     }, []);
 
-    // Focus on input
     useEffect(() => {
         promptInputRef.current.focus();
     }, []);
 
-    /**
-     * Handle Form Submit
-     * @param {*} e
-     */
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const newMessage = {
-            role: "user",
-            content: prompt,
-        };
-
+        const newMessage = { role: "user", content: prompt };
         const newMessages = [...messages, newMessage];
 
         try {
-            // Get AI response
             const completion = await getChatCompletion(newMessages);
             const assistantMessage = {
                 role: "assistant",
@@ -62,15 +50,12 @@ function ChatBot() {
             };
 
             const updatedMessages = [...newMessages, assistantMessage];
-
             if (currentChatId) {
-                // Update existing chat
                 await updateChat(currentChatId, [newMessage, assistantMessage]);
             } else {
-                // Create new chat
                 const newChat = await createChat(
                     updatedMessages,
-                    prompt.substring(0, 30) + "..." // Use first 30 chars of prompt as title
+                    prompt.substring(0, 30) + "..."
                 );
                 setCurrentChatId(newChat._id);
                 setChats([newChat, ...chats]);
@@ -112,96 +97,95 @@ function ChatBot() {
     };
 
     return (
-        <main className='flex bg-indigo-900 text-white h-screen'>
-            {/* LEFT CHATS SECTION  */}
-            <section className='flex flex-col flex-1 border p-5 bg-neutral-800'>
-                <div className='flex justify-between items-center mb-5'>
-                    <BsWindowSidebar size={24} />
-                    <h1 className='text-center text-xl font-bold text-orange-500'>
-                        Chatbot
-                    </h1>
-                    <div className='flex items-center gap-5'>
-                        <IoIosSearch size={24} />
+        <main className={styles.mainContainer}>
+            {/* history.. */}
+            <section className={styles.sidebar}>
+                <div className={styles.sidebarHeader}>
+                    <BsWindowSidebar className={styles.icon} />
+                    <h1 className={styles.title}>Chatbot</h1>
+                    <div className={styles.iconsContainer}>
+                        <IoIosSearch className={styles.icon} />
                         <FaRegPenToSquare
-                            size={24}
+                            className={`${styles.icon} ${styles.newChatIcon}`}
                             onClick={handleNewChat}
-                            className='cursor-pointer hover:text-orange-500'
                         />
                     </div>
                 </div>
+
                 {/* PREVIOUS CHATS */}
-                <div className='flex-1 overflow-y-auto'>
+                <div className={styles.chatsList}>
                     {chats.map((chat) => (
                         <div
                             key={chat._id}
-                            className={`p-2 border rounded-md mb-2 cursor-pointer hover:bg-neutral-700 flex justify-between items-center
-                ${currentChatId === chat._id ? "bg-neutral-700" : ""}`}
+                            className={`${styles.chatItem} ${currentChatId === chat._id ? styles.activeChat : ""
+                                }`}
                             onClick={() => handleChatSelect(chat._id)}
                         >
-                            <span className='truncate'>{chat.title}</span>
+                            <span className={styles.chatTitle}>{chat.title}</span>
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleDeleteChat(chat._id);
                                 }}
-                                className='text-red-500 hover:text-red-700'
+                                className={styles.deleteButton}
                             >
                                 ×
                             </button>
                         </div>
                     ))}
                 </div>
-                <div className='flex items-center mb-5 mt-auto'>
-                    <CiUser size={32} className='border rounded-full p-1 mr-2' />
-                    <h3 className='text-center text-xl font-bold text-orange-500'>
-                        User
-                    </h3>
+
+                <div className={styles.userInfo}>
+                    <CiUser className={styles.userIcon} />
+                    <h3 className={styles.userName}>User</h3>
                 </div>
             </section>
 
-            {/* RIGHT CHAT SECTION  */}
-            <section className='flex flex-col flex-3 border bg-neutral-900'>
-                <h2 className='mb-5 text-center text-xl font-bold bg-neutral-800 p-3 w-full'>
-                    Chat
-                </h2>
-                <div className='p-5'>
-                    <div className=''>
-                        {messages.map((message, idx) => {
-                            return (
-                                <div key={idx} className='flex items-center mb-5'>
-                                    {message.role === "user" ? (
-                                        <CiUser size={32} className='border rounded-full p-1' />
-                                    ) : (
-                                        <LuBot size={32} className='border rounded-full p-1' />
-                                    )}
-                                    <div className='ml-2'>{message.content}</div>
-                                </div>
-                            );
-                        })}
-                    </div>
+            {/* conversation */}
+            <section className={styles.chatContainer}>
+                <h2 className={styles.chatHeader}>Chat</h2>
+                <div className={styles.messagesContainer}>
+                    {messages.map((message, idx) => (
+                        <div
+                            key={idx}
+                            className={`${styles.message} ${message.role === "user"
+                                ? styles.userMessage
+                                : styles.botMessage
+                                }`}
+                        >
+                            {message.role === "user" ? (
+                                <>
+                                    <div className={styles.messageContent}>
+                                        {message.content}
+                                    </div>
+                                    <CiUser className={styles.messageIcon} />
+                                </>
+                            ) : (
+                                <>
+                                    <LuBot className={styles.messageIcon} />
+                                    <div className={styles.messageContentRight}>
+                                        {message.content}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    ))}
                 </div>
 
-                <form
-                    onSubmit={handleSubmit}
-                    className='flex justify-between w-full mt-auto p-3'
-                >
+                <form onSubmit={handleSubmit} className={styles.inputForm}>
                     <input
                         ref={promptInputRef}
-                        type='text'
-                        className='border w-full p-1 rounded-lg'
-                        placeholder='Prompt'
+                        type="text"
+                        className={styles.promptInput}
+                        placeholder="Type your message..."
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
                         required
                     />
-                    <input
-                        type='submit'
-                        className='ml-2 border p-2 rounded-lg hover:bg-orange-500 hover:text-bold hover:cursor-pointer'
-                    />
+                    <button type="submit" className={styles.submitButton}>
+                        Send
+                    </button>
                 </form>
-                <i className='text-center'>
-                    Chatbot can make mistakes. Check important info.
-                </i>
             </section>
         </main>
     );
