@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .cache"
+
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.15",

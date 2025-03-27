@@ -15,8 +15,8 @@ export default function RoadmapDetailsPage() {
     const roadmapId = params.roadmapId;
     const [roadmap, setRoadmap] = useState(null);
     const [steps, setSteps] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [inThisAlready, setInThisAlready] = useState(false);
+    const [inThisAlready, setInThisAlready] = useState(true);
+    const [userId, setUserId] = useState(null);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -24,6 +24,7 @@ export default function RoadmapDetailsPage() {
     useEffect(() => {
         setLoading(true);
         setError(null);
+
         RoadmapApi.getRoadmap(roadmapId)
             .then(data => {
                 if (data?.roadmap) {
@@ -36,26 +37,36 @@ export default function RoadmapDetailsPage() {
             }).then(() => {
                 setLoading(false);
             });
+
+        const userId = localStorage.getItem("userID");
+        setUserId(userId);
+        if (!userId) {
+            setInThisAlready(false);
+        }
+
+        // show the button if not in this roadmap
+        RoadmapApi.isUserInRoadmap(roadmapId, userId).then(data => {
+            console.log("=========== is in roadmap ===========");
+            console.log(data);
+            setInThisAlready(data);
+        }).catch(error => {
+            console.error(error);
+        });
     }, [roadmapId]);
 
-    useEffect(() => {
-        const userId = JSON.parse(localStorage.getItem("user"));
-        setIsLoggedIn(userId ? true : false);
-
-
-    }, []);
-
     const handleStart = () => {
-        if (!isLoggedIn) {
+        if (!userId) {
             window.location.href = "/auth";
         }
 
-        // TODO: if already in show prgress
-
-
-        // TODO: call api to start this roadmap
-
-
+        RoadmapApi.setRoadmapToUser(roadmapId, userId)
+            .then(data => {
+                if (data?.success) {
+                    setInThisAlready(true);
+                }
+            }).catch(error => {
+                console.error(error);
+            });
     };
 
     //handel status
@@ -70,7 +81,8 @@ export default function RoadmapDetailsPage() {
                     <h2>{roadmap.title}</h2>
                     <p >{roadmap.description}</p>
                 </div>
-                <button onClick={handleStart}>Start this roadmap</button>
+                {!inThisAlready && <button onClick={handleStart}>Start this roadmap</button>}
+                {/* TODO progress bar for the user show his progress in case he already in the roadmap. */}
             </div>
 
             <div className={styles.roadmapInfo}>
